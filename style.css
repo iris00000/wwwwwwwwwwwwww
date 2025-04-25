@@ -1,0 +1,94 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; /* 最底層 */
+}
+
+/* 縮小選單樣式 */
+.menu {
+  position: absolute;
+  top: -100px; /* 初始位置在視窗外 */
+  right: 20px; /* 距離右邊邊框 */
+  display: flex;
+  list-style: none;
+  padding: 5px 15px; /* 減少內距 */
+  margin: 0;
+  background: linear-gradient(135deg, #6a9c78, #b8d8ba); /* 漸層背景 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 陰影縮小 */
+  border-radius: 10px; /* 圓角縮小 */
+  z-index: 3; /* 最上層 */
+  transition: top 0.3s ease, background-color 0.3s ease; /* 滑入效果與背景變化 */
+}
+
+.menu li {
+  margin: 0 10px; /* 減少左右間距 */
+  position: relative;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #ffffff; /* 文字顏色為白色 */
+  font-size: 14px; /* 字體大小縮小 */
+  font-family: '微軟正黑體', Arial, sans-serif; /* 字型 */
+  padding: 8px 15px; /* 減少內距 */
+  border-radius: 5px; /* 圓角縮小 */
+  background-color: rgba(255, 255, 255, 0.2); /* 半透明背景 */
+  transition: background-color 0.3s, transform 0.2s; /* 背景與縮放效果 */
+}
+
+.menu a:hover {
+  background-color: rgba(255, 255, 255, 0.4); /* 滑鼠移動到上面時的背景顏色 */
+  color: #344e41; /* 滑鼠移動到上面時的文字顏色 */
+  transform: scale(1.05); /* 輕微放大效果 */
+}
+
+/* 隱藏子選單 */
+.submenu {
+  display: none;
+  position: absolute;
+  background-color: #6a9c78; /* 綠色背景 */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #4e7d5a; /* 深綠色邊框 */
+  z-index: 1000;
+  flex-direction: column; /* 垂直排列子選單項目 */
+}
+
+/* 子選單項目樣式 */
+.submenu li {
+  padding: 5px 10px;
+  font-size: 8px; /* 調整文字大小 */
+  display: block; /* 確保每個項目占一行 */
+}
+
+/* 子選單項目滑鼠懸停效果 */
+.submenu li:hover {
+  background-color: #4e7d5a; /* 深綠色背景 */
+}
+
+/* iframe 容器樣式 */
+.iframe-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  z-index: 2; /* 第二層 */
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2); /* 背景透明度 */
+  border: none;
+}

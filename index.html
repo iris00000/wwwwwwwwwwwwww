@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>作品集</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <!-- 選單 -->
+    <ul class="menu" id="menu">
+      <li><a href="#" onclick="loadIframe('https://iris00000.github.io/ex3')">首頁</a></li>
+      <li><a href="#" onclick="loadIframe('https://iris00000.github.io/ex1')">自我介紹</a></li>
+      <li><a href="#" onclick="loadIframe('https://iris00000.github.io/quiz/')">測驗卷</a></li>
+      <li id="portfolio-menu">
+        <a href="#" onclick="toggleSubmenu(event)">作品集</a>
+        <!-- 子選單 -->
+        <ul class="submenu">
+          <li><a href="#" onclick="loadIframe('https://iris00000.github.io/11111/')">第一週</a></li>
+          <li><a href="#" onclick="loadIframe('https://iris00000.github.io/22222/')">第二週</a></li>
+          <li><a href="#" onclick="loadIframe('https://iris00000.github.io/33333/')">第三週</a></li>
+          <li><a href="#" onclick="loadIframe('https://hackmd.io/@Iris0805/BkTJNG8Cke')">期中筆記</a></li>
+        </ul>
+      </li>
+      <li><a href="#" onclick="loadIframe('https://cfchen58.synology.me/程式設計2024/A2/week8/20250411_113919.mp4')">教學影片</a></li>
+    </ul>
+
+    <!-- iframe 顯示區域 -->
+    <div class="iframe-container" id="iframe-container" style="display: none;">
+      <iframe id="content-frame" src="" frameborder="0" style="width: 100%; height: 100vh;"></iframe>
+    </div>
+
+    <script src="sketch.js"></script>
+
+    <script>
+      // 動態載入 iframe 網頁
+      function loadIframe(url) {
+        const iframeContainer = document.getElementById('iframe-container');
+        const iframe = document.getElementById('content-frame');
+
+        // 如果是首頁，調整 iframe 尺寸
+        if (url === 'https://iris00000.github.io/ex2') {
+          iframeContainer.style.width = '100vw';
+          iframeContainer.style.height = '100vh';
+          iframe.style.width = '100vw';
+          iframe.style.height = '100vh';
+        } else {
+          iframeContainer.style.width = '100%';
+          iframeContainer.style.height = '100vh';
+          iframe.style.width = '100%';
+          iframe.style.height = '100vh';
+        }
+
+        iframe.src = url;
+        iframeContainer.style.display = 'block'; // 顯示 iframe
+
+        // 確保主選單顯示
+        const menu = document.getElementById('menu');
+        menu.style.top = '10px'; // 固定主選單位置
+      }
+
+      // 隱藏 iframe
+      function hideIframe() {
+        const iframeContainer = document.getElementById('iframe-container');
+        const iframe = document.getElementById('content-frame');
+        iframe.src = ''; // 清空 iframe 的內容
+        iframeContainer.style.display = 'none'; // 隱藏 iframe
+      }
+
+      // 顯示或隱藏選單 (滑入效果)
+      document.addEventListener('mousemove', (event) => {
+        const menu = document.getElementById('menu');
+        if (event.clientY < 100) {
+          menu.style.top = '10px'; // 顯示選單 (滑入)
+        } else {
+          menu.style.top = '-100px'; // 隱藏選單 (滑出)
+        }
+      });
+
+      // 切換子選單顯示/隱藏
+      function toggleSubmenu(event) {
+        event.preventDefault(); // 防止預設行為
+        const submenu = document.querySelector('#portfolio-menu .submenu');
+        if (submenu.style.display === 'block') {
+          submenu.style.display = 'none';
+        } else {
+          submenu.style.display = 'block';
+        }
+
+        // 確保主選單顯示
+        const menu = document.getElementById('menu');
+        menu.style.top = '10px'; // 固定主選單位置
+      }
+
+      // 滑鼠移開時隱藏子選單
+      document.getElementById('portfolio-menu').addEventListener('mouseleave', () => {
+        const submenu = document.querySelector('#portfolio-menu .submenu');
+        submenu.style.display = 'none';
+      });
+    </script>
+  </body>
+</html>
